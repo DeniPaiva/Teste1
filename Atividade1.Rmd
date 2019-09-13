@@ -1,0 +1,55 @@
+---
+title: "Atividade 1"
+author: "Denise"
+date: "24 de agosto de 2019"
+output:
+  pdf_document: default
+  html_document: default
+---
+```{r a, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Análise de Regressão
+
+Os dados que se seguem (Steel e Torrie, 1980) referem-se ao peso médio ($\color{red}{\text{X}}$) de 50 galinhas e consumo de alimentos ($\color{red}{\text{Y}}$), para 10 linhagens White Leghorn.
+
+```{r}
+X <- c(4.6,5.1,4.8, 4.4, 5.9, 4.7, 5.1, 5.2, 4.9, 5.1)
+Y <- c(87.1, 93.1, 89.8, 91.4, 99.5, 92.1, 95.5, 99.3, 93.4, 94.4)
+```
+
+### O gráfico de dispersão dos dados é dado por:
+
+1) Usando a função *plot*.
+
+\setkeys{Gin}{width=0.5\textwidth}
+```{r pressure,fig.align='center'}
+plot(Y~X)
+```
+
+2) Adicionando a *figura*. 
+
+![Gráfico de dispersão.](fig1.png){width=50%}{}
+
+
+Sabe-se que $\color{red}{\text{X}}$ e $\color{red}{\text{Y}}$ são, respectivamente, as variáveis **preditora** e **resposta**. A função *lm* fornece o ajuste de um modelo de regressão linear de primeira ordem: $Y = \beta_0 + \beta_1X + \epsilon$, onde $\color{blue}{\text{$\beta_0$}}$ e $\color{blue}{\text{$\beta_1$}}$ são parâmetros desconhecidos e $\color{blue}{\text{$\epsilon$}}$ é o erro aleatório.
+
+
+```{r}
+ajuste<-lm(Y~X)
+summary(ajuste)
+```
+
+Logo, a equação da reta ajustada é dada por $\color{green}{\text{$\hat{Y}=55.26+7.69X$}}$ e o diagrama de dispersão para as variáveis em estudo é construído com a execução do comando:
+
+```{r,fig.align='right'}
+plot(Y~X)
+abline(lm(Y~X))
+```
+
+Pode-se calcular os intervalos de confiança para $\color{blue}{\text{$\beta_0$}}$ e $\color{blue}{\text{$\beta_1$}}$ utilizando a seguinte função:
+
+```{r}
+confint(ajuste)
+```
